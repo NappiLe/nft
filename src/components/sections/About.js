@@ -63,7 +63,7 @@ const ButtonContainer = styled.div`
 
 function About() {
   return (
-    <Section>
+    <Section id="about">
       <Container>
       <Box><Carousel /></Box>
       <Box>
