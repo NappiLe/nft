@@ -10,6 +10,7 @@ import Roadmap from "./components/sections/Roadmap";
 import Showcase from "./components/sections/Showcase";
 import Team from "./components/sections/Team";
 import Faq from "./components/sections/Faq";
+import ScrollToTop from "./components/sections/ScrollToTop";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Team />
         <Faq />
         <Footer />
+        <ScrollToTop />
       </ThemeProvider>
     </>
   );
