@@ -9,8 +9,8 @@ import About from  "./components/sections/About";
 import Roadmap from "./components/sections/Roadmap";
 import Showcase from "./components/sections/Showcase";
 import Team from "./components/sections/Team";
-import Faq from "./components/sections/Faq";
 import ScrollToTop from "./components/sections/ScrollToTop";
+import Career from "./components/sections/Career";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Roadmap />
         <Showcase />
         <Team />
-        <Faq />
+        <Career />
         <Footer />
         <ScrollToTop />
       </ThemeProvider>

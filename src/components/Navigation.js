@@ -67,7 +67,7 @@ function Navigation() {
                     <MenuItem onClick={()=> scrollTo('roadmap')}>Roadmap</MenuItem>
                     <MenuItem onClick={()=> scrollTo('showcase')}>Showcase</MenuItem>
                     <MenuItem onClick={()=> scrollTo('team')}>Team</MenuItem>
-                    <MenuItem onClick={()=> scrollTo('faq')}>Faq</MenuItem>
+                    <MenuItem onClick={()=> scrollTo('career')}>Career</MenuItem>
                 </Menu>
                 <Button text="Connect Wallet" link="https://google.com" />
             </NavBar>
