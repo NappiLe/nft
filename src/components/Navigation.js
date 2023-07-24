@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 
-
 import Logo from "./Logo";
-import Button from "./sections/Button";
 
 const Section = styled.section`
     width: 100vw;
@@ -46,7 +44,7 @@ const MenuItem = styled.li`
     }
 `
 
-function Navigation() {
+function Navigation({onHandleModal}) {
     const scrollTo = (id) => {
         let element = document.getElementById(id)
 
@@ -58,6 +56,7 @@ function Navigation() {
     }
 
     return (
+        <>
         <Section id="navigation">
             <NavBar>
                 <Logo />
@@ -69,9 +68,14 @@ function Navigation() {
                     <MenuItem onClick={()=> scrollTo('team')}>Team</MenuItem>
                     <MenuItem onClick={()=> scrollTo('career')}>Career</MenuItem>
                 </Menu>
-                <Button text="Connect Wallet" link="https://google.com" />
+                <button 
+                    onClick={onHandleModal}
+                >Connect Wallet</button>
             </NavBar>
         </Section>
+        
+        </>
+        
     )
 }
 

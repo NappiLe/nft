@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import career from '../../assets/career.jpg';
-import JobAd from './JobAd';
+
 const Section = styled.section`
   min-height: 100vh;
   width: 100vw;
@@ -87,11 +87,6 @@ const Button = styled.button`
 ` 
 
 function Career() {
-  const [isShowJobAd, setIsShowJobAd]= React.useState(false)
-
-  const handleShowJobAd = () =>{
-    setIsShowJobAd(true)
-  }
 
   return (
     <Section id="career">
@@ -104,12 +99,10 @@ function Career() {
             Lorem ipsum nt in culpa qui officia deserunt mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Text>
             <Button 
-              //onClick={handleShowJobAd}
             >Join us now</Button>
             </Box>
             <Image src={career} alt="career"/>
       </Container>
-      { isShowJobAd && <JobAd/>}
     </Section>
   )
 }
