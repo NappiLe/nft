@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styled from "styled-components"
 import FeatherIcon from 'feather-icons-react';
 import { ethers } from 'ethers';
-const provider = new ethers.providers.Web3Provider(window.Ethereum)
+const provider = ((window.ethereum != null) ? new ethers.providers.Web3Provider(window.ethereum) : ethers.providers.getDefaultProvider());
 
 const Overlay= styled.div`
     position: fixed;
