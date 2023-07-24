@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import styled from "styled-components"
 import FeatherIcon from 'feather-icons-react';
 import { ethers } from 'ethers';
+const provider = new ethers.providers.Web3Provider(window.Ethereum)
 
 const Overlay= styled.div`
     position: fixed;
@@ -51,25 +52,31 @@ const Number= styled.p`
 `
 
 function ConnectWalletModal({onHandleModal}) {
-  const [errorMessage, setErrorMessage] = useState(null)
-  const [defaultAccount, setDefaultAccount] = useState(null)
-  const [userBalance, setUserBalance] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [defaultAccount, setDefaultAccount] = useState(null);
+  const [userBalance, setUserBalance] = useState(null);
 
-  const connectWallet = () => {
-    console.log("AA")
-    if (window.ethereum){
-      window.ethereum.request({method: 'eth_requestAccounts'})
-        .then(result => {
-          accountChanged([result[0]])
-        })
-    } else{
-      setErrorMessage("Install MetaMask please")
+  const connectwalletHandler = () => {
+    if (window.ethereum) {
+        provider.send("eth_requestAccounts", [])
+            .then(async () => {
+                await accountChangedHandler(provider.getSigner());
+            })
+    } else {
+        setErrorMessage("Please Install MetaMask!!!");
     }
-  }
+}
 
-  const accountChanged = (accountName) => {
-    setDefaultAccount(accountName);
-  }
+const accountChangedHandler = async (newAccount) => {
+  const address = await newAccount.getAddress();
+  setDefaultAccount(address);
+  const balance = await newAccount.getBalance()
+  setUserBalance(ethers.utils.formatEther(balance));
+  await getuserBalance(address)
+}
+const getuserBalance = async (address) => {
+  const balance = await provider.getBalance(address, "latest")
+}
 
   return (
     <Overlay>
@@ -78,11 +85,18 @@ function ConnectWalletModal({onHandleModal}) {
             <Title>Connect Wallet</Title>
             <FeatherIcon icon="x-circle" ><button onClick={onHandleModal}/></FeatherIcon>
           </Container>
-          <button onClick={connectWallet}>
-            Metamask
+          <button onClick={connectwalletHandler}>
+            {defaultAccount ? "Connected!!" : "Connect Metamask"}
           </button>
-          <h3>Address: {defaultAccount}</h3>
-          {errorMessage}
+          <div>
+                <h4>Address:{defaultAccount}</h4>
+                <div>
+                    <h3>
+                        Wallet Amount: {userBalance}
+                    </h3>
+                </div>
+            </div>
+            {errorMessage}
         </Modal>
     </Overlay>
   )
