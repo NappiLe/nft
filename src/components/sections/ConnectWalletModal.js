@@ -10,7 +10,7 @@ const Overlay= styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    
+    z-index: 2;
 `
 const Modal= styled.div`
     position: absolute;
@@ -20,7 +20,6 @@ const Modal= styled.div`
     bottom: 40px;
     background-color: papayawhip;
     border-radius: 1.5rem;
-    
 `
 const Title= styled.h2`
     font-size: ${props => props.theme.fontxl};
@@ -83,7 +82,7 @@ const getuserBalance = async (address) => {
         <Modal>
           <Container>
             <Title>Connect Wallet</Title>
-            <FeatherIcon icon="x-circle" ><button onClick={onHandleModal}/></FeatherIcon>
+            <button onClick={onHandleModal}><FeatherIcon icon="x-circle" /></button>
           </Container>
           <button onClick={connectwalletHandler}>
             {defaultAccount ? "Connected!!" : "Connect Metamask"}

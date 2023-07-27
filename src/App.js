@@ -8,32 +8,43 @@ import Footer from "./components/Footer";
 import Home from "./components/sections/Home";
 import About from  "./components/sections/About";
 import Roadmap from "./components/sections/Roadmap";
-import Showcase from "./components/sections/Showcase";
+//import Showcase from "./components/sections/Showcase";
 import Team from "./components/sections/Team";
 import ScrollToTop from "./components/sections/ScrollToTop";
 import Career from "./components/sections/Career";
 import ConnectWalletModal from './components/sections/ConnectWalletModal'
+import Login from './components/Login'
+import Register from './components/sections/Register';
 
 function App() {
-  const [isShowModal, setIsShowModal]= useState(false)
+  const [isShowConnectWalletModal, setIsShowConnectWalletModal]= useState(false)
+  const [isShowLoginModal, setIsShowLoginModal]= useState(false)
 
-    const handleModal = () =>{
-        setIsShowModal(!isShowModal)
+    const handleConnectWalletModal = () =>{
+        setIsShowConnectWalletModal(!isShowConnectWalletModal)
     }
+
+    const handleLoginModal = () =>{
+      setIsShowLoginModal(!isShowLoginModal)
+  }
   return (
     <>
     <GlobalStyles/>
       <ThemeProvider theme={light}>
-          <Navigation onHandleModal={handleModal}/>
+          <Navigation 
+            onHandleConnectWalletModal= {handleConnectWalletModal}
+            onHandleLoginModal= {handleLoginModal}
+          />
           <Home />
           <About />
           <Roadmap />
-          <Showcase />
+          <Register />
           <Team />
           <Career />
           <Footer />
           <ScrollToTop />
-          { isShowModal && <ConnectWalletModal onHandleModal={handleModal}/> }
+          { isShowConnectWalletModal && <ConnectWalletModal onHandleModal={handleConnectWalletModal}/> }
+          { isShowLoginModal && <Login onHandleLoginModal={handleLoginModal}/> }
       </ThemeProvider>
     </>
   );

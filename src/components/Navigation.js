@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from "styled-components";
-
+import FeatherIcon from 'feather-icons-react';
+import Dropdown from './Dropdown';
 import Logo from "./Logo";
 
 const Section = styled.section`
@@ -44,7 +45,29 @@ const MenuItem = styled.li`
     }
 `
 
-function Navigation({onHandleModal}) {
+const DropdownButton = styled.button`
+    background-color: ${props => props.theme.body};
+    color: ${props => props.theme.text};
+    outline: none;
+    border: none;  
+    
+    font-size: ${props => props.theme.fontxl};
+    padding: 0.9rem 2.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+
+    &:hover{
+        transform: scale(0.9);
+    }
+`
+function Navigation({onHandleConnectWalletModal, onHandleLoginModal}) {
+    const [isShowDropdown, setIsShowDropdown]= useState(false)
+
+    const handleDropDown = () =>{
+        setIsShowDropdown(!isShowDropdown)
+    }
+
     const scrollTo = (id) => {
         let element = document.getElementById(id)
 
@@ -68,10 +91,13 @@ function Navigation({onHandleModal}) {
                     <MenuItem onClick={()=> scrollTo('team')}>Team</MenuItem>
                     <MenuItem onClick={()=> scrollTo('career')}>Career</MenuItem>
                 </Menu>
-                <button 
-                    onClick={onHandleModal}
-                >Connect Wallet</button>
+                <DropdownButton onClick={handleDropDown}><FeatherIcon icon="align-justify" /></DropdownButton>
             </NavBar>
+            {isShowDropdown && 
+                <Dropdown 
+                    onHandleConnectWalletModal={onHandleConnectWalletModal} 
+                    onHandleLoginModal={onHandleLoginModal} 
+                />}
         </Section>
         
         </>
