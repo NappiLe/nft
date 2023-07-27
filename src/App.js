@@ -14,7 +14,7 @@ import ScrollToTop from "./components/sections/ScrollToTop";
 import Career from "./components/sections/Career";
 import ConnectWalletModal from './components/sections/ConnectWalletModal'
 import Login from './components/Login'
-import Register from './components/sections/Register';
+import GetGift from './components/sections/GetGift';
 
 function App() {
   const [isShowConnectWalletModal, setIsShowConnectWalletModal]= useState(false)
@@ -38,7 +38,7 @@ function App() {
           <Home />
           <About />
           <Roadmap />
-          <Register />
+          <GetGift />
           <Team />
           <Career />
           <Footer />

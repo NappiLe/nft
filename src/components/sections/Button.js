@@ -36,7 +36,6 @@ const Btn = styled.button`
         transform: translate(-50%, -50%) scale(1);
         padding: 0.3rem;
     }
-
 ` 
 
 function Button({text, link}) {

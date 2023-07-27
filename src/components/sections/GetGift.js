@@ -1,7 +1,9 @@
 import React ,{useRef, useState} from 'react'
 import styled from 'styled-components'
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+// import { Formik, Field, Form, ErrorMessage } from 'formik';
+// import * as Yup from 'yup';
+// import PhoneInput from 'react-phone-number-input'
+// import 'react-phone-number-input/style.css'
 
 const Section = styled.section`
     padding: 2rem;
@@ -50,8 +52,8 @@ const Error= styled.p`
 `
 const Btn = styled.button`
     display: inline-block;
-    background-color: ${props => props.theme.body};
-    color: ${props => props.theme.text};
+    background-color: #65E746;
+    color: ${props => props.theme.body};
     outline: none;
     border: none;  
     margin: 1rem;
@@ -86,7 +88,11 @@ const Btn = styled.button`
     }
 
 ` 
-function Register() {
+function GetGift() {
+    // const [name, setName] = useState("")
+    // const [email, setEmail] = useState("")
+    // const [phone, setPhone] = useState("")
+
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const scriptUrl = "https://script.google.com/macros/s/AKfycbyhz6xFrr1TvE6MyJJ4ZV5vcPCfIdMAtT0OUdwVkSulYxomX1XthvKIrxqHThw5MOUH/exec"
@@ -96,6 +102,12 @@ function Register() {
         e.preventDefault()
         const formEle = document.querySelector("form");
         const formData = new FormData(formEle);
+
+        // formData.append('Name', name)
+        // formData.append('Email', email)
+        // formData.append('Phone', phone)
+        
+        
         fetch(scriptUrl,
         {
             method: "POST",
@@ -112,8 +124,8 @@ function Register() {
     }
   
     return (
-        <Section id="showcase">
-            <Title>Register form</Title>
+        <Section id="getgift">
+            <Title>Simple submit this form to get gift now: </Title>
             {/* <Formik
                 initialValues={{ Name: '', Email: '', Phone: '' }}
                 validationSchema={Yup.object({
@@ -132,23 +144,29 @@ function Register() {
                 > */}
                 <StyledForm className="form" onSubmit={(e) => handleSubmit(e)}>
                     <Label htmlFor="name">Full Name</Label>
-                    <StyledField placeholder="Your Name" name="Name" type="text" />
+                    <StyledField placeholder="Full Name" name="Name" type="text" />
                     {/* <Error><ErrorMessage name="name" /></Error> */}
 
                     <Label htmlFor="email">Email Address</Label>
-                    <StyledField placeholder="Your Email" name="Email" type="text" />
+                    <StyledField placeholder="Email address" name="Email" type="text" />
                     {/* <Error><ErrorMessage name="email" /></Error> */}
             
-
+                    
                     <Label htmlFor="phoneNumber">Phone Number</Label>
-                    <StyledField placeholder="Your Phone" name="Phone" type="text" />
+                    {/* <PhoneInput
+                        international
+                        defaultCountry="FI"
+                        name="Phone" 
+                        value={phone}
+                        onChange={setPhone}/> */}
+                    <StyledField placeholder="Phone Number" name="Phone" type="text" /> 
                     {/* <Error><ErrorMessage name="phoneNumber" /></Error> */}
                     
-                    <Btn name="Name" type="submit" >Register</Btn>
+                    <Btn type="submit">RESERVE MY SPOT NOW</Btn>
                 </StyledForm>
             {/* </Formik> */}
         </Section>
     )
 }
 
-export default Register
+export default GetGift
