@@ -11,7 +11,8 @@ const Section = styled.section`
 
 const NavBar = styled.nav`
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 5rem;
     align-items: center;
 
     width: 85%;
