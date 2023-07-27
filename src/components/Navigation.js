@@ -44,42 +44,43 @@ const MenuItem = styled.li`
         width: 100%;
     }
 `
-const Button = styled.button`
-    display: inline-block;
-    background-color: ${props => props.theme.text};
-    color: ${props => props.theme.body};
-    outline: none;
-    border: none;  
+// const Button = styled.button`
+//     display: inline-block;
+//     background-color: ${props => props.theme.text};
+//     color: ${props => props.theme.body};
+//     outline: none;
+//     border: none;  
     
-    font-size: ${props => props.theme.fontsm};
-    padding: 0.9rem 2.3rem;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.2 ease;
-    position: relative;
+//     font-size: ${props => props.theme.fontsm};
+//     padding: 0.9rem 2.3rem;
+//     border-radius: 50px;
+//     cursor: pointer;
+//     transition: all 0.2 ease;
+//     position: relative;
 
-    &:hover{
-        transform: scale(0.9);
-    }
+//     &:hover{
+//         transform: scale(0.9);
+//     }
 
-    &::after{
-        content: ' ';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        border: 2px solid ${props => props.theme.text};
-        height: 100%;
-        width: 100%;
-        border-radius: 50px;
-        transition: all 0.2s ease;
-    }
+//     &::after{
+//         content: ' ';
+//         position: absolute;
+//         top: 50%;
+//         left: 50%;
+//         transform: translate(-50%, -50%) scale(0);
+//         border: 2px solid ${props => props.theme.text};
+//         height: 100%;
+//         width: 100%;
+//         border-radius: 50px;
+//         transition: all 0.2s ease;
+//     }
 
-    &:hover::after{
-        transform: translate(-50%, -50%) scale(1);
-        padding: 0.3rem;
-    }
-` 
+//     &:hover::after{
+//         transform: translate(-50%, -50%) scale(1);
+//         padding: 0.3rem;
+//     }
+// ` 
+
 // const DropdownButton = styled.button`
 //     background-color: ${props => props.theme.body};
 //     color: ${props => props.theme.text};
@@ -126,7 +127,7 @@ function Navigation({onHandleConnectWalletModal, onHandleLoginModal}) {
                     <MenuItem onClick={()=> scrollTo('team')}>Team</MenuItem>
                     <MenuItem onClick={()=> scrollTo('career')}>Career</MenuItem>
                 </Menu>
-                <Button onClick={onHandleConnectWalletModal}>Connect Wallet</Button>
+                {/* <Button onClick={onHandleConnectWalletModal}>Connect Wallet</Button> */}
                 {/* <DropdownButton onClick={handleDropDown}><FeatherIcon icon="align-justify" /></DropdownButton> */}
             </NavBar>
             {/* {isShowDropdown && 
