@@ -39,17 +39,17 @@ const Container= styled.div`
   color: ${props => props.theme.body};
 `
 
-const Number= styled.p`
-    background-color: #e5d6cc;
-    width: 22px;
-    height: 22px;
-    border-radius: 20px;
-    color: #fff;
-    margin-right: 0.75rem;
-    font-size: .875rem;
-    line-height: 1.25rem;
-    text-align: center;
-`
+// const Number= styled.p`
+//     background-color: #e5d6cc;
+//     width: 22px;
+//     height: 22px;
+//     border-radius: 20px;
+//     color: #fff;
+//     margin-right: 0.75rem;
+//     font-size: .875rem;
+//     line-height: 1.25rem;
+//     text-align: center;
+// `
 
 function ConnectWalletModal({onHandleModal}) {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -72,11 +72,11 @@ const accountChangedHandler = async (newAccount) => {
   setDefaultAccount(address);
   const balance = await newAccount.getBalance()
   setUserBalance(ethers.utils.formatEther(balance));
-  await getuserBalance(address)
+  // await getuserBalance(address)
 }
-const getuserBalance = async (address) => {
-  const balance = await provider.getBalance(address, "latest")
-}
+// const getuserBalance = async (address) => {
+//   const balance = await provider.getBalance(address, "latest")
+// }
 
   return (
     <Overlay>

@@ -1,7 +1,7 @@
-import React, {useRef, useLayoutEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
+// import gsap from 'gsap'
+// import ScrollTrigger from 'gsap/ScrollTrigger'
 import career from '../../assets/career.jpg';
 
 const Section = styled.section`

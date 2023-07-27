@@ -1,4 +1,4 @@
-import React ,{useRef, useState} from 'react'
+import React  from 'react'
 import styled from 'styled-components'
 // import { Formik, Field, Form, ErrorMessage } from 'formik';
 // import * as Yup from 'yup';
@@ -47,9 +47,9 @@ const StyledField = styled.input`
     background-color: ${props => props.theme.text};
     color: ${props => props.theme.body};
 `
-const Error= styled.p`
-    color: red;
-`
+// const Error= styled.p`
+//     color: red;
+//`
 const Btn = styled.button`
     display: inline-block;
     background-color: #65E746;
@@ -93,7 +93,7 @@ function GetGift() {
     // const [email, setEmail] = useState("")
     // const [phone, setPhone] = useState("")
 
-    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+    // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const scriptUrl = "https://script.google.com/macros/s/AKfycbyhz6xFrr1TvE6MyJJ4ZV5vcPCfIdMAtT0OUdwVkSulYxomX1XthvKIrxqHThw5MOUH/exec"
     //const [loading, setLoading] = useState(false)
