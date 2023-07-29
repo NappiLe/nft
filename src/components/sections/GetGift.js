@@ -22,13 +22,28 @@ const Title = styled.h2`
     display: flex;
     justify-content: center;
     margin: 1rem auto;
-    border-bottom: 2px solid ${props => props.theme.body};
     width: fit-content;
+
+    @media (max-width: 64em) {
+        font-size: ${props => props.theme.fontxl};
+    }
+
+    @media (max-width: 40em) {
+        font-size: ${props => props.theme.fontlg};
+    }
+
+    @media (max-width: 30em) {
+        font-size: ${props => props.theme.fontmd};
+    }
 `
 const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
     width: 35%;
+
+    @media (max-width: 64em) {
+        width: 50%;
+    }
 `
 const Label= styled.label`
     font-size: ${props => props.theme.fontlg};

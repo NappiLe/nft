@@ -36,6 +36,11 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+
+  @media (max-width: 64em) {
+      flex-direction: column-reverse;
+      align-items: center;
+  }
 `
 
 const Image= styled.img`
@@ -45,6 +50,9 @@ const Image= styled.img`
 const Box= styled.div`
   display: flex;
   flex-direction: column;
+  @media (max-width: 64em) {
+      align-items: center;
+  }
 `
 
 const Button = styled.button`
