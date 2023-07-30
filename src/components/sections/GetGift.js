@@ -1,7 +1,7 @@
 import React  from 'react'
 import styled from 'styled-components'
-// import { Formik, Field, Form, ErrorMessage } from 'formik';
-// import * as Yup from 'yup';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 // import PhoneInput from 'react-phone-number-input'
 // import 'react-phone-number-input/style.css'
 
@@ -36,7 +36,7 @@ const Title = styled.h2`
         font-size: ${props => props.theme.fontmd};
     }
 `
-const StyledForm = styled.form`
+const StyledForm = styled(Form)`
     display: flex;
     flex-direction: column;
     width: 35%;
@@ -53,7 +53,7 @@ const Label= styled.label`
     color: ${props => props.theme.body};
     margin-top: 1rem;
 `
-const StyledField = styled.input`
+const StyledField = styled(Field)`
     padding: 0.5rem;
     margin: 0.5rem 0;
     border: none;
@@ -62,9 +62,10 @@ const StyledField = styled.input`
     background-color: ${props => props.theme.text};
     color: ${props => props.theme.body};
 `
-// const Error= styled.p`
-//     color: red;
-//`
+const Error= styled.p`
+    color: red;
+`
+
 const Btn = styled.button`
     display: inline-block;
     background-color: #65E746;
@@ -101,26 +102,33 @@ const Btn = styled.button`
         transform: translate(-50%, -50%) scale(1);
         padding: 0.3rem;
     }
-
 ` 
-function GetGift() {
-    // const [name, setName] = useState("")
-    // const [email, setEmail] = useState("")
-    // const [phone, setPhone] = useState("")
 
-    // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+const SuccessMessage = styled.p`
+    background-color: #E0FFC7;
+    border: 1px solid #BAD5A0;
+    border-radius: 5px;
+    color: #2C522D;
+    text-align: center;
+    margin: 0.5rem 0;
+    padding:0.5rem;
+`
+function GetGift() {
+    const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
+
+    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const scriptUrl = "https://script.google.com/macros/s/AKfycbyhz6xFrr1TvE6MyJJ4ZV5vcPCfIdMAtT0OUdwVkSulYxomX1XthvKIrxqHThw5MOUH/exec"
     //const [loading, setLoading] = useState(false)
 
-    const handleSubmit = (e) =>{
-        e.preventDefault()
-        const formEle = document.querySelector("form");
-        const formData = new FormData(formEle);
+    const handleSubmit = ( values) =>{
+        setIsFormSubmitted(true);
 
-        // formData.append('Name', name)
-        // formData.append('Email', email)
-        // formData.append('Phone', phone)
+        const formData = new FormData();
+
+        formData.append('Name', values.name)
+        formData.append('Email', values.email)
+        formData.append('Phone', values.phone)
         
         
         fetch(scriptUrl,
@@ -137,49 +145,58 @@ function GetGift() {
             console.log(error);
         });
     }
-  
+
     return (
         <Section id="getgift">
             <Title>Simple submit this form to get gift now: </Title>
-            {/* <Formik
-                initialValues={{ Name: '', Email: '', Phone: '' }}
+            <Formik
+                initialValues={{ name: '', email: '', phone: '' }}
                 validationSchema={Yup.object({
-                    Name: Yup.string()
+                    name: Yup.string()
                         .max(15, 'Must be 15 characters or less')
                         .required('* Required'),
-                    Email: Yup.string()
+                    email: Yup.string()
                         .email('Invalid email address')
                         .required('* Required'),
-                    Phone: Yup.string()
+                    phone: Yup.string()
                         .matches(phoneRegExp, 'Phone number is not valid')
                         .min(10, "Phone number is too short")
                         .max(10, "Phone number is too long")
                         .required('* Required'),
                 })}
-                > */}
-                <StyledForm className="form" onSubmit={(e) => handleSubmit(e)}>
+
+                onSubmit={values => handleSubmit(values)}
+                >
+                <StyledForm>
                     <Label htmlFor="name">Full Name</Label>
-                    <StyledField placeholder="Full Name" name="Name" type="text" />
-                    {/* <Error><ErrorMessage name="name" /></Error> */}
+                    <StyledField id="name" placeholder="Full Name" name="name" type="text" />
+                    <Error><ErrorMessage name="name" /></Error>
 
                     <Label htmlFor="email">Email Address</Label>
-                    <StyledField placeholder="Email address" name="Email" type="text" />
-                    {/* <Error><ErrorMessage name="email" /></Error> */}
+                    <StyledField id="email" placeholder="Email Address" name="email" type="text" />
+                    <Error><ErrorMessage name="email" /></Error>
             
                     
-                    <Label htmlFor="phoneNumber">Phone Number</Label>
+                    <Label htmlFor="phone">Phone Number</Label>
                     {/* <PhoneInput
                         international
                         defaultCountry="FI"
                         name="Phone" 
                         value={phone}
                         onChange={setPhone}/> */}
-                    <StyledField placeholder="Phone Number" name="Phone" type="text" /> 
-                    {/* <Error><ErrorMessage name="phoneNumber" /></Error> */}
+                    <StyledField id="phone" placeholder="Phone Number" name="phone" type="text" /> 
+                    <Error><ErrorMessage name="phone" /></Error>
                     
+                    {isFormSubmitted ?
+                    <SuccessMessage>
+                        Thank you for filling out your information! We will in touch with u shortly!
+                    </SuccessMessage>
+                    :
                     <Btn type="submit">RESERVE MY SPOT NOW</Btn>
+                    }
+                    
                 </StyledForm>
-            {/* </Formik> */}
+            </Formik>
         </Section>
     )
 }
