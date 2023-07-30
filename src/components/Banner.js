@@ -137,7 +137,7 @@ function Banner() {
                 <img src={img5} alt="The Weirdos" />
                 <img src={img6} alt="The Weirdos" />
             </ImgContainer>
-            <Title>Join the <br /> weirdos club </Title>
+            <Title>Join the <br /> Koi club </Title>
             <BtnContainer>
                 <JoinNow>
                     Join Now
