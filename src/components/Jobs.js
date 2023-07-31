@@ -19,26 +19,26 @@ const Section = styled.section`
   background: #020E18;
   height: 314px;
 `
-const Container = styled.div`
-   display: flex;
-   flex-direction: row;
-   width: 80%;
-`
-const Columns = styled.div`
-  display: flex;
-   flex-direction: column;
-   flex-grow: 1;
-   border: 1px solid deeppink;
-  .bg-red {
-  background-color: red;
-  }
-  .bg-pink {
-      background-color: pink;
-  }
-  .bg-orange {
-      background-color: orange;
-  }
-`
+// const Container = styled.div`
+//    display: flex;
+//    flex-direction: row;
+//    width: 80%;
+// `
+// const Columns = styled.div`
+//   display: flex;
+//    flex-direction: column;
+//    flex-grow: 1;
+//    border: 1px solid deeppink;
+//   .bg-red {
+//   background-color: red;
+//   }
+//   .bg-pink {
+//       background-color: pink;
+//   }
+//   .bg-orange {
+//       background-color: orange;
+//   }
+// `
 function Jobs() {
   return (
     <>
