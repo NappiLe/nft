@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-// import gsap from 'gsap'
-// import ScrollTrigger from 'gsap/ScrollTrigger'
+import styled from "styled-components"
+import {Link } from "react-router-dom";
 import career from '../../assets/career.jpg';
 
 const Section = styled.section`
@@ -55,7 +54,7 @@ const Box= styled.div`
   }
 `
 
-const Button = styled.button`
+const StyledLink = styled(Link)`
   width: 60%;
   display: inline-block;
   background-color: ${props => props.theme.body};
@@ -95,10 +94,6 @@ const Button = styled.button`
 ` 
 
 function Career() {
-  const openInNewTab = (url) => {
-    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
-    if (newWindow) newWindow.opener = null
-  }
 
   return (
     <Section id="career">
@@ -110,8 +105,9 @@ function Career() {
             <Text>
             Lorem ipsum nt in culpa qui officia deserunt mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Text>
-            <Button onClick={() => openInNewTab('https://stackoverflow.com')}
-            >Join us now</Button>
+            <StyledLink to="/jobs">
+                Join us now
+            </StyledLink>
             </Box>
             <Image src={career} alt="career"/>
       </Container>
