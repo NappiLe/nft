@@ -15,13 +15,8 @@ import Home from "./sections/Home";
 import About from  "./sections/About";
 import Roadmap from "./sections/Roadmap";
 
-function MainPage() {
-    const [isShowConnectWalletModal, setIsShowConnectWalletModal]= useState(false)
-    const [isShowLoginModal, setIsShowLoginModal]= useState(false)
-
-    const handleConnectWalletModal = () =>{
-        setIsShowConnectWalletModal(!isShowConnectWalletModal)
-    }
+function MainPage({handleShowModal, isShowModal}) {
+    const [isShowLoginModal, setIsShowLoginModal]= useState(false)    
 
     const handleLoginModal = () =>{
     setIsShowLoginModal(!isShowLoginModal)
@@ -32,7 +27,7 @@ function MainPage() {
         <GlobalStyles/>
         <ThemeProvider theme={light}>
             <Navigation 
-                onHandleConnectWalletModal= {handleConnectWalletModal}
+                onHandleConnectWalletModal= {handleShowModal}
                 onHandleLoginModal= {handleLoginModal}
             />
             <Home />
@@ -43,11 +38,11 @@ function MainPage() {
             <Career />
             <Footer />
             <ScrollToTop />
-            { isShowConnectWalletModal && <ConnectWalletModal onHandleModal={handleConnectWalletModal}/> }
+            { isShowModal && <ConnectWalletModal onHandleModal={handleShowModal}/> }
             { isShowLoginModal && <Login onHandleLoginModal={handleLoginModal}/> }
         </ThemeProvider>
         </>
-  )
+    )
 }
 
 export default MainPage
