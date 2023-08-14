@@ -222,15 +222,13 @@ const RowForm = styled.div`
 `
 function JobModal({ onHandleModal }) {
   const [file, setFile] = useState();
-  const [fileName, setFileName] = useState();
 
   const saveFile = (e) => {
     setFile(e.target.files[0]);
-    setFileName(e.target.files[0].name);
   };
   
   const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbxjiQvIJMO-T4DvGN4yQbCdDOrO6mn7GjJKT9LbvnkSeYIZgkqLYd5VZKEwK469zbanTA/exec"
+  //const scriptUrl = "https://script.google.com/macros/s/AKfycbxjiQvIJMO-T4DvGN4yQbCdDOrO6mn7GjJKT9LbvnkSeYIZgkqLYd5VZKEwK469zbanTA/exec"
 
   async function handleSubmit(values) {
     const formData = new FormData();

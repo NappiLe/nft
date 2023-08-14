@@ -2,7 +2,6 @@ import React from 'react'
 import styled, { ThemeProvider } from "styled-components"
 import {dark} from '../../styles/Themes'
 import Carousel from '../Carousel'
-import Btn from './Button'
 
 const Section = styled.section`
   min-height: 100vh;
