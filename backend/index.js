@@ -1,5 +1,4 @@
 const express = require("express")
-const fs = require('fs')
 const cors = require("cors")
 const multer = require('multer')
 const nodemailer = require('nodemailer')

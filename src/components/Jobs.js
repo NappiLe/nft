@@ -231,6 +231,7 @@ function JobModal({ onHandleModal }) {
   //const scriptUrl = "https://script.google.com/macros/s/AKfycbxjiQvIJMO-T4DvGN4yQbCdDOrO6mn7GjJKT9LbvnkSeYIZgkqLYd5VZKEwK469zbanTA/exec"
 
   async function handleSubmit(values) {
+    setIsFormSubmitted(true);
     const formData = new FormData();
     
     formData.append("myfile", file);
