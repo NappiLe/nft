@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { ThemeProvider } from "styled-components"
 import {dark} from '../../styles/Themes'
 import Carousel from '../Carousel'
-import Button from './Button'
+import Btn from './Button'
 
 const Section = styled.section`
   min-height: 100vh;
@@ -134,6 +134,11 @@ const ButtonContainer = styled.div`
       }
     }
 `
+const Anchor = styled.a`
+  background-color: white;
+  padding: 1rem;
+  border-radius: 25px;
+`
 
 function About() {
   return (
@@ -146,7 +151,7 @@ function About() {
         <SubTextLight>With more than 200+ hand drawn traits, each NFT is unique and comes with a membership to an exclusive group of successful investors. Join an ambitious ever-growing community with multiple benefits and utilities.</SubTextLight>
         <ButtonContainer>
           <ThemeProvider theme={dark}>
-            <Button text="JOIN OUR DISCORD" link="#"></Button>
+            <Anchor href="https://t.me/coinanlien">JOIN OUR DISCORD</Anchor>
           </ThemeProvider>
         </ButtonContainer>
       </Box>

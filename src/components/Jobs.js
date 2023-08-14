@@ -1,4 +1,4 @@
-import React ,{useState, useRef} from 'react'
+import React ,{useState } from 'react'
 import styled from "styled-components"
 import jobs from '../assets/jobs.png'
 import Modal from './Modal'
@@ -220,61 +220,38 @@ const RowForm = styled.div`
   margin: 0.5rem;
   justify-content: space-between;
 `
-function JobModal ({onHandleModal}){
+function JobModal({ onHandleModal }) {
+  const [file, setFile] = useState();
+  const [fileName, setFileName] = useState();
+
+  const saveFile = (e) => {
+    setFile(e.target.files[0]);
+    setFileName(e.target.files[0].name);
+  };
+  
   const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
   const scriptUrl = "https://script.google.com/macros/s/AKfycbxjiQvIJMO-T4DvGN4yQbCdDOrO6mn7GjJKT9LbvnkSeYIZgkqLYd5VZKEwK469zbanTA/exec"
 
-  const fileInputRef = useRef(null)
-
-  const handleSubmit = ( values) =>{
-    setIsFormSubmitted(true);
-
-    const files = fileInputRef.current.files
-    if (files.length > 0){
-          const fileData = new FormData()
-          
-          for (let i=0 ; i< files.length; i++){
-            fileData.append("files", files[i])
-          }
-
-          fetch('http://localhost:8000/upload',{
-            method: 'POST',
-            body: fileData
-          })
-          .then((res) => res.json())
-          .then((data) => {
-              console.log(data);
-          })
-          .catch((error) => {
-            console.log(error);
+  async function handleSubmit(values) {
+    const formData = new FormData();
+    
+    formData.append("myfile", file);
+    formData.append("name", values.name)
+    formData.append("email", values.email)
+    formData.append("message", values.message)
+      
+      fetch('http://localhost:8000/sendemail', {
+        method: 'POST', body: formData
+        }).catch(err => {
+        console.error(err);
         });
     }
-
-    const formData = new FormData();
-
-    formData.append('Name', values.name)
-    formData.append('Email', values.email)
-    
-
-    fetch(scriptUrl,
-    {
-        method: "POST",
-        body: formData
-    }
-    )
-    .then((res) => res.json())
-    .then((data) => {
-        console.log(data);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
-  }
+  
 
   return(
     <Modal title="Apply For A Job" onHandleModal={onHandleModal}>
       <Formik
-                initialValues={{ name: '', email: '', message: '', file: null }}
+                initialValues={{ name: '', email: '', message: ''}}
                 validationSchema={Yup.object({
                   name: Yup.string()
                       .required('* Required'),
@@ -298,8 +275,8 @@ function JobModal ({onHandleModal}){
                     <Error><ErrorMessage name="name" /></Error> 
                     <Field id="email" placeholder="Email Address" name="email" type="text" />
                     <Error><ErrorMessage name="email" /></Error>
-                    <Field component={() => <textarea placeholder="Message" id="message" name="message" ></textarea>} />
-                    <input  id="file" name="file" type="file" multiple ref={fileInputRef} />
+                    <Field component="textarea" placeholder="Message" id="message" name="message"type="text"></Field>
+                    <input id="file" name="file" type="file" onChange={saveFile} />
                     <p>Please name your CV as the following format: LastName.Firstname.JobPosition</p>
                   </Column>
                 </RowForm>

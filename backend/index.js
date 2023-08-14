@@ -1,65 +1,63 @@
-const express = require('express')
-const {google, drive_v2} = require('googleapis')
-const multer = require('multer')
-
-const path = require('path')
-const cors = require('cors')
-
+const express = require("express")
 const fs = require('fs')
+const cors = require("cors")
+const multer = require('multer')
+const nodemailer = require('nodemailer')
+
+const bodyParser = require('body-parser');
 
 const app = express()
+const port = 8000
 
-const storage = multer.diskStorage({
-    destination: 'uploads',
-    filename: function(req, file, callback){
-        const extension = file.originalname.split(".").pop()
-        callback(null, `${file.fieldname}-${Date.now()}.${extension}`)
-    }
-})
 
-const upload = multer({storage: storage})
-
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 app.use(cors())
+app.use(express.static("files"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/upload', upload.array('files'), async (req, res) => {
-    try{
-        const auth= new google.auth.GoogleAuth({
-            keyFile: 'key.json',
-            scopes: ['https://www.googleapis.com/auth/drive']
-        })
+var to;
 
+const upload = multer({
+	storage: multer.memoryStorage()
+});
 
-        const drive = google.drive({
-            version: 'v3',
-            auth
-        })
+app.post("/sendemail", upload.single('myfile'), async (req, res) => {
 
-        const uploadedFiles = []
+	to = "ngocle2605@gmail.com"
+		
+	var transporter = nodemailer.createTransport({
+		service: 'gmail',
+		auth: {
+			user: 'ngocle2605@gmail.com',
+			pass: 'iyeesmodrcowzetf'
+		}
+	})
 
-        for (let i=0; i < req.files.length; i++ ){
-            const file = req.files[i]
-            
-            const response = await drive.files.create({
-                requestBody:{
-                    name: file.originalname,
-                    mimeType: file.mimeType,
-                    parents: ['1ROHdWtuiGvhU4Gfslv8sg57H2m9H-pQl']
-                },
-                media:{
-                    body: fs.createReadStream(file.path)
-                }
-            })
-            
-            uploadedFiles.push(response.data)
-        }
-
-        res.json({files: uploadedFiles})
-
-    }catch(err){
-        console.log(err)
-    }
+	const mailOptions= {
+		from: to,
+		to: to,
+		subject: `CV application ${req.body.name}`,
+		html: `<div>Name: ${req.body.message}</div>
+				<div>Email: ${req.body.email}</div>
+				<div>Message: ${req.body.message}</div>
+				`,
+		attachments: [{
+		filename: req.file.originalname,
+		content: req.file.buffer
+    }]
+		
+}
+	
+	transporter.sendMail(mailOptions, function (err, info) {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log('Email sent'+ info.response)
+		}
+	})
 })
-
-app.listen(8000, () => {
-    console.log('App is listening on port 8000')
+app.listen(port, () => {
+	console.log(`Listening at http://localhost:${port}`)
 })
