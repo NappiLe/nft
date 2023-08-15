@@ -24,13 +24,13 @@ const upload = multer({
 
 app.post("/sendemail", upload.single('myfile'), async (req, res) => {
 
-	to = "vanduong15@gmail.com"
+	to = "taikhoan.helio@gmail.com"
 		
 	var transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
-			user: 'ngocle2605@gmail.com',
-			pass: 'iyeesmodrcowzetf'
+			user: 'taikhoan.helio@gmail.com',
+			pass: 'kxabmstkwdohscgn'
 		}
 	})
 
