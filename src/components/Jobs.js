@@ -7,39 +7,40 @@ import * as Yup from 'yup';
 
 const data = [
   {
-    title: "Senior UI/UX",
-    date: "7 Jun 2023",
-    type: "Part-time",
+    title: "Python developer",
+    date: "22 Aug 2023",
+    type: "Full time",
     level: "Senior",
-    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim."
-  },
-  {
-    title: "Back-end developer",
-    date: "1 Jun 2023",
-    type: "Full-time",
-    level: "Senior",
-    description: "Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt."
-  },
-  {
-    title: "Front-end developer",
-    date: "25 May 2023",
-    type: "Full-time",
-    level: "Junior",
-    description: "Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim."
-  },
-  {
-    title: "CTO",
-    date: "15 March 2023",
-    type: "Full-time",
-    level: "Senior",
-    description: "Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet."
-  },
-  {
-    title: "Graphic designer",
-    date: "11 March 2023",
-    type: "Freelance",
-    level: "Senior/ Junor",
-    description: "Maecenas tempus, tellu. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet."
+    description:
+      <ul>
+        <li> Work closely with our clients to develop product and configure the application to their business environment.</li>
+        <li>Work within a team & communicate effectively across teams.</li>
+        <li>Deal with technical challenges, programing tasks while managing client expectations and building long-term customer relations.</li>
+        <li>Implement assigned tasks from client/manager.</li>
+    </ul>,
+    skills:
+      <ul>
+        <li>From 2 years of experience in Python.</li>
+        <li>Experience working with Django framework.</li>
+        <li>Experience working with Jinja2.</li>
+        <li>Experience with Python ORM: SQLAlchemy.</li>
+        <li>Experience working with Git, Git flow.</li>
+        <li>Have knowledge with DB, DB design.</li>
+    </ul>,
+    additional:
+      <ul>
+        <li>Experience with other Python Web Framework: FastAPI, Flask, Pyramid.</li>
+        <li>Experience working with micro-service projects.</li>
+        <li>Experience with NoSQL (MongoDB/DynamoDB).</li>
+        <li>Experience with Docker.</li>
+        <li>Experience with cloud services: AWS/Azure/GCP.</li>
+    </ul>,
+    benefits:
+    <ul>
+      <li>Surrounded with friendly, open-minded, young and supportive colleagues Annual company trip and regular team-building parties, party celebration (Christmas, Birthday, Mid-autumn...), sports clubs (Football, Badminton, Swimming...).</li>
+      <li>Bonus programs for candidate referral, technical article writing.</li>
+      <li>Attractive salary (13th-month salary, salary review twice/year) and project bonus.</li>
+    </ul>,
   }
 ]
 const Title= styled.h1`
@@ -320,8 +321,14 @@ function Jobs() {
             <Row>
               <JobType>{job.type}</JobType> 
               <JobLevel>{job.level}</JobLevel></Row>
-            <Row><h3>Desciption</h3></Row>
+            <Row><h3 style={{marginBottom: 0}}>Desciption</h3></Row>
             <Row><Des>{job.description}</Des></Row>
+            <Row><h3 style={{marginBottom: 0}}>Must have skills</h3></Row>
+            <Row><Des>{job.skills}</Des></Row>
+            <Row><h3 style={{marginBottom: 0}}>Nice to have</h3></Row>
+            <Row><Des>{job.additional}</Des></Row>
+            <Row><h3 style={{marginBottom: 0}}>Benefits</h3></Row>
+            <Row><Des>{job.benefits}</Des></Row>
             <Row><Button onClick={handleShowModal}>Apply</Button></Row>
           </Column>
         </>
