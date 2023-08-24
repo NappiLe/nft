@@ -41,6 +41,38 @@ const data = [
       <li>Bonus programs for candidate referral, technical article writing.</li>
       <li>Attractive salary (13th-month salary, salary review twice/year) and project bonus.</li>
     </ul>,
+  },
+  {
+    title: "Algo-Trading Strategy Researcher",
+    date: "24 Aug 2023",
+    type: "Full time",
+    level: "Senior",
+    description: 
+      <div>
+        <p>We are seeking a highly motivated Algo-Trading Strategy Researcher (ATSR) to join our team."</p>
+      <ul>
+        <li>The ATSR will be responsible for conducting research and analysis to develop new trading strategies, as well as optimizing and enhancing existing strategies.</li>
+        <li>The ATSR will work closely with our trading and technology teams to implement and monitor these strategies in real- time.</li>
+      </ul>
+      </div>
+      ,
+    skills:
+      <ul>
+        <li>Bachelor's or Master's degree in Mathematics, Statistics, Computer Science, Finance, or a related field.</li>
+        <li>3+ years of experience in quantitative research or algorithmic trading (Must have).</li>
+        <li>Strong knowledge of statistics and machine learning techniques.</li>
+        <li>Proficiency in at least one programming language such as Python, C++, or Java.</li>
+        <li>Experience with financial data analysis and modeling</li>
+        <li>Strong problem-solving and analytical skills</li>
+        <li>Excellent communication and collaboration skills</li>
+      </ul>,
+    additional: "-",
+    benefits:
+    <ul>
+      <li>Surrounded with friendly, open-minded, young and supportive colleagues Annual company trip and regular team-building parties, party celebration (Christmas, Birthday, Mid-autumn...), sports clubs (Football, Badminton, Swimming...).</li>
+      <li>Bonus programs for candidate referral, technical article writing.</li>
+      <li>Attractive salary (13th-month salary, salary review twice/year) and project bonus.</li>
+    </ul>,
   }
 ]
 const Title= styled.h1`
@@ -68,7 +100,7 @@ const Columns = styled.div`
   grid-template-rows: repeat(2, 1fr);
   margin: 2rem 0;
   gap: 2rem;
-  width: 80%;
+  width: 95%;
   
 `
 const Column = styled.div`
@@ -145,7 +177,9 @@ const Date= styled.p`
   color: grey;
 `
 const Des= styled.div`
-  min-height: 10rem;
+  p{
+    margin-top: 1rem;
+  }
 `
 const Text= styled.p`
   color: white;
@@ -323,7 +357,7 @@ function Jobs() {
               <JobLevel>{job.level}</JobLevel></Row>
             <Row><h3 style={{marginBottom: 0}}>Desciption</h3></Row>
             <Row><Des>{job.description}</Des></Row>
-            <Row><h3 style={{marginBottom: 0}}>Must have skills</h3></Row>
+            <Row><h3 style={{marginBottom: 0}}>Requirements</h3></Row>
             <Row><Des>{job.skills}</Des></Row>
             <Row><h3 style={{marginBottom: 0}}>Nice to have</h3></Row>
             <Row><Des>{job.additional}</Des></Row>
