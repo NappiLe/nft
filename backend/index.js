@@ -30,7 +30,7 @@ app.post("/sendemail", upload.single('myfile'), async (req, res) => {
 		service: 'gmail',
 		auth: {
 			user: 'taikhoan.helio@gmail.com',
-			pass: 'kxabmstkwdohscgn'
+			pass: 'gloketuhcmdrwvpb'
 		}
 	})
 
