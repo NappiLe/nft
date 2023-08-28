@@ -29,8 +29,8 @@ app.post("/sendemail", upload.single('myfile'), async (req, res) => {
 	var transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
-			user: 'taikhoan.helio@gmail.com',
-			pass: 'gloketuhcmdrwvpb'
+			user: 'ngocle2605@gmail.com',
+			pass: 'forvruiaheoqbgbj'
 		}
 	})
 
