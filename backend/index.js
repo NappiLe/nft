@@ -34,6 +34,14 @@ const upload = multer({
 	storage: multer.memoryStorage()
 });
 
+let baseURL = '';
+
+	if (process.env.NODE_ENV === 'production') {
+		baseURL = 'https://magical-kitten-885ba2.netlify.app';
+	} else {
+		baseURL = 'http://localhost:8000';
+	}
+
 app.post("/sendemail", upload.single('myfile'), async (req, res) => {
 
 	to = process.env.EMAIL
@@ -82,6 +90,7 @@ app.post("/sendemail", upload.single('myfile'), async (req, res) => {
 		
 	});
 })
+
 app.listen(port, () => {
 	console.log(`Listening at http://localhost:${port}`)
 })
