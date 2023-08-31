@@ -9,6 +9,7 @@ const Overlay= styled.div`
     right: 0;
     bottom: 0;
     z-index: 2;
+    background-color: #4A4A4A;
 `
 const ModalBox= styled.div`
     position: absolute;
@@ -16,7 +17,7 @@ const ModalBox= styled.div`
     left: 40px;
     right: 40px;
     bottom: 40px;
-    background-color: #F3F7FF;
+    background-color: white;
     border-radius: 1.5rem;
 `
 

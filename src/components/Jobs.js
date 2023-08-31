@@ -4,6 +4,7 @@ import jobs from '../assets/jobs.png'
 import Modal from './Modal'
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import ShowMore from './ShowMore';
 
 const data = [
   {
@@ -94,23 +95,26 @@ const Section = styled.div`
   justify-content: space-between;
 `
 const Columns = styled.div`
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  margin: 2rem 0;
-  gap: 2rem;
-  width: 95%;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0;
+    background: linear-gradient(180.11deg,#fcf5e4 1.48%,#e9f9ff 42.21%,#fff 98.49%);
   
 `
 const Column = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  border: 1px solid #F3F7FF;
-  background-color: #F3F7FF;
-  border-radius: 5px;
-  padding: 1rem;
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 50%;
+  box-shadow: ${props => props.noBoxShadow ? 'none' : `5px 5px 15px 0 rgba(224,224,224,.5)`};
 
   label, input, textarea{
     margin: 0.75rem;
@@ -121,6 +125,10 @@ const Column = styled.div`
 
   p{
     margin: 0 0.75rem;
+  }
+
+  :hover{
+    transition: transform .3s ease 0s;;
   }
 `
 
@@ -165,16 +173,22 @@ const JobLevel = styled.h4`
 `
 
 const Button= styled.button`
-  background-color: #466DD8;
+  box-shadow: 0 4px 20px 2px rgba(144,144,144,.2);
+  background: radial-gradient(circle at 98% 13%,#38ccff,#14b1e7 28%);
+  border: none;
   color: white;
   border-radius: 5px;
-  border: 1px solid #466DD8;
   cursor: pointer;
-  padding: 0.5rem;
-  width: 50%;
+  padding: 0.75rem;
+  width: 25%;
+  transition: all 1s;
+  &:hover{
+    transform: scale(1.1);
+  }
 `
 const Date= styled.p`
   color: grey;
+  margin: 0px !important;
 `
 const Des= styled.div`
   p{
@@ -255,13 +269,14 @@ const RowForm = styled.div`
   margin: 0.5rem;
   justify-content: space-between;
 `
+
 function JobModal({ onHandleModal }) {
   const [file, setFile] = useState();
 
   const saveFile = (e) => {
     setFile(e.target.files[0]);
   };
-  
+
   const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
   //const scriptUrl = "https://script.google.com/macros/s/AKfycbxjiQvIJMO-T4DvGN4yQbCdDOrO6mn7GjJKT9LbvnkSeYIZgkqLYd5VZKEwK469zbanTA/exec"
 
@@ -297,14 +312,14 @@ function JobModal({ onHandleModal }) {
                 >
                 <StyledForm>
                 <RowForm>
-                  <Column>
+                  <Column noBoxShadow>
                     <label htmlFor="name">Full Name</label>
                     <label htmlFor="email">Email Address</label>
                     <label htmlFor="message">Message</label>
                     <label htmlFor="file">Upload CV</label>
                   </Column>
 
-                  <Column>
+                  <Column noBoxShadow>
                     <Field id="name" placeholder="Lastname Firstname" name="name" type="text" />
                     <Error><ErrorMessage name="name" /></Error> 
                     <Field id="email" placeholder="Email Address" name="email" type="text" />
@@ -328,12 +343,27 @@ function JobModal({ onHandleModal }) {
   )
 }
 
+const ShowMoreButton = styled.div`
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: ${props => (props.showMore ? `0` : `20px`)};
+  margin-bottom:  ${props => (props.showMore ? `0` : `30px`)};
+  text-decoration: underline;
+  display: ${props => (props.showMore ? `hidden` : `block`)};
+`;
+
 function Jobs() {
   const [isShowModal, setIsShowModal]= useState(false)
     
   const handleShowModal = () =>{
       setIsShowModal(!isShowModal)
   }
+
+  const [isShowMore, setIsShowMore] = useState(false);
+  const toggleReadMore = () => {
+    setIsShowMore(show => !show)
+  }
+
   return (
     <>
     <Container>
@@ -346,26 +376,34 @@ function Jobs() {
       </Section>
       <Columns>
       {data.map((job, i) => 
-        <>
+      <>
           <Column>
             <Row key={i}>
-              <JobTitle>{job.title}</JobTitle>
               <Date>{job.date}</Date>
+              <Button onClick={handleShowModal}>Apply for this job</Button>
             </Row>
-            <Row>
-              <JobType>{job.type}</JobType> 
-              <JobLevel>{job.level}</JobLevel></Row>
-            <Row><h3 style={{marginBottom: 0}}>Desciption</h3></Row>
+              <JobTitle>{job.title}</JobTitle>
+          <Row>
+            <JobType>{job.type}</JobType> 
+            <JobLevel>{job.level}</JobLevel></Row>
+          <Row><h3 style={{ marginBottom: 0 }}>Desciption</h3></Row>
             <Row><Des>{job.description}</Des></Row>
-            <Row><h3 style={{marginBottom: 0}}>Requirements</h3></Row>
-            <Row><Des>{job.skills}</Des></Row>
-            <Row><h3 style={{marginBottom: 0}}>Nice to have</h3></Row>
-            <Row><Des>{job.additional}</Des></Row>
-            <Row><h3 style={{marginBottom: 0}}>Benefits</h3></Row>
-            <Row><Des>{job.benefits}</Des></Row>
-            <Row><Button onClick={handleShowModal}>Apply</Button></Row>
-          </Column>
-        </>
+            <ShowMore>
+           
+              <>
+                <Row><h3 style={{marginBottom: 0}}>Requirements</h3></Row>
+                <Row><Des>{job.skills}</Des></Row>
+                <Row><h3 style={{marginBottom: 0}}>Nice to have</h3></Row>
+                <Row><Des>{job.additional}</Des></Row>
+                <Row><h3 style={{marginBottom: 0}}>Benefits</h3></Row>
+                <Row><Des>{job.benefits}</Des></Row>
+              
+              
+                </>
+              </ShowMore>
+            
+          </Column> 
+      </>
       )}
       </Columns>
     </Container>
