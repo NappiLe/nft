@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const app = express()
 const port = 8000
 
+app.options('*', cors());
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -15,6 +16,13 @@ app.use(cors())
 app.use(express.static("files"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
 
 var to;
 
