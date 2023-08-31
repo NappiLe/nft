@@ -6,9 +6,13 @@ const nodemailer = require('nodemailer')
 const bodyParser = require('body-parser');
 
 const app = express()
-const port = 8000
+
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
 
 app.options('*', cors());
+
+const port = process.env.PORT 
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -32,13 +36,14 @@ const upload = multer({
 
 app.post("/sendemail", upload.single('myfile'), async (req, res) => {
 
-	to = "ngocle2605@gmail.com"
+	to = process.env.EMAIL
 		
 	var transporter = nodemailer.createTransport({
 		service: 'gmail',
+		port: 465,
 		auth: {
-			user: 'ngocle2605@gmail.com',
-			pass: 'forvruiaheoqbgbj'
+			user: process.env.EMAIL,
+			pass: process.env.PASS
 		}
 	})
 
@@ -64,6 +69,18 @@ app.post("/sendemail", upload.single('myfile'), async (req, res) => {
 			console.log('Email sent'+ info.response)
 		}
 	})
+
+
+	await new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, function (err, info) {
+		if (err) {
+			console.log(err)
+		} else {
+			console.log('Email sent'+ info.response)
+		}
+	})
+		
+	});
 })
 app.listen(port, () => {
 	console.log(`Listening at http://localhost:${port}`)
