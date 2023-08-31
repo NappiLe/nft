@@ -343,25 +343,11 @@ function JobModal({ onHandleModal }) {
   )
 }
 
-const ShowMoreButton = styled.div`
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: ${props => (props.showMore ? `0` : `20px`)};
-  margin-bottom:  ${props => (props.showMore ? `0` : `30px`)};
-  text-decoration: underline;
-  display: ${props => (props.showMore ? `hidden` : `block`)};
-`;
-
 function Jobs() {
   const [isShowModal, setIsShowModal]= useState(false)
     
   const handleShowModal = () =>{
       setIsShowModal(!isShowModal)
-  }
-
-  const [isShowMore, setIsShowMore] = useState(false);
-  const toggleReadMore = () => {
-    setIsShowMore(show => !show)
   }
 
   return (
@@ -389,7 +375,6 @@ function Jobs() {
           <Row><h3 style={{ marginBottom: 0 }}>Desciption</h3></Row>
             <Row><Des>{job.description}</Des></Row>
             <ShowMore>
-           
               <>
                 <Row><h3 style={{marginBottom: 0}}>Requirements</h3></Row>
                 <Row><Des>{job.skills}</Des></Row>
@@ -397,8 +382,6 @@ function Jobs() {
                 <Row><Des>{job.additional}</Des></Row>
                 <Row><h3 style={{marginBottom: 0}}>Benefits</h3></Row>
                 <Row><Des>{job.benefits}</Des></Row>
-              
-              
                 </>
               </ShowMore>
             
