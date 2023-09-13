@@ -289,8 +289,13 @@ function JobModal({ onHandleModal }) {
     formData.append("email", values.email)
     formData.append("message", values.message)
       
-      fetch('http://localhost:8000/sendemail', {
-        method: 'POST', body: formData
+    fetch('http://localhost:8000/sendemail', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: formData
         }).catch(err => {
         console.error(err);
         });
