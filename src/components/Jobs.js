@@ -289,7 +289,7 @@ function JobModal({ onHandleModal }) {
     formData.append("email", values.email)
     formData.append("message", values.message)
       
-      fetch('https://magical-kitten-885ba2.netlify.app/sendemail', {
+      fetch('http://localhost:8000/sendemail', {
         method: 'POST', body: formData
         }).catch(err => {
         console.error(err);
